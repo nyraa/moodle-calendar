@@ -37,7 +37,7 @@ Evnet time is from 00:00 to submission deadline.
 This project need following premissions:
 | Premission | Feature |
 |------------|---------|
-|   `View, Edit, Create and Delete your Google Calendar events`  |   Sync assignment events to Google Calendar.  |
+| `See, edit, share, and permanently delete all the calendars you can access using Google Calendar` |   Sync assignment events to Google Calendar.  |
 | `Connect to an external service` | Fetch data from Moodle. |
 | `Send email as you` | Send email notifications. |
 
