@@ -33,6 +33,14 @@ A daemon to crawl NCKU Moodle calendar events(assignment) and sync them to Googl
 
 Evnet time is from 00:00 to submission deadline.
 
+## Premission
+This project need following premissions:
+| Premission | Feature |
+|------------|---------|
+|   `View, Edit, Create and Delete your Google Calendar events`  |   Sync assignment events to Google Calendar.  |
+| `Connect to an external service` | Fetch data from Moodle. |
+| `Send email as you` | Send email notifications. |
+
 ## Settings about notification
 Under `Main.gs` function main, there are some settings about notification, you can modify them to fit your needs.
 | Settings | Default  | Feature |
