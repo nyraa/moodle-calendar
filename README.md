@@ -14,7 +14,7 @@ A daemon to crawl NCKU Moodle calendar events(assignment) and sync them to Googl
 
 ## Setup
 1. Login your Google account (school Google Workspace account recommanded) in browser.
-2. Visit GAS project [Moodle Calendar Prototype](https://script.google.com/d/1Vyr0Ov7SeWvpx4irqbXSq2cUYPJI6RSeZ7oLxzqpQmtadFMxhaFy0X8X) and make a copy under your Google account.
+2. Visit GAS project [Moodle Calendar Prototype](https://script.google.com/d/1Vyr0Ov7SeWvpx4irqbXSq2cUYPJI6RSeZ7oLxzqpQmtadFMxhaFy0X8X/edit) and make a copy under your Google account.
 3. Open the copied project, go to `Project Settings` to add properties `moodleid` and `moodlekey` and fill in your Moodle account and password.
 4. Go to `Editor` and select `Inititalize.gs` then click `Run` to initialize the project. Script will create a calendar called `Moodle Calendar` under executor's account and sync existed event. (You may need to authorize the project to access your Google account)
 5. You can delete the `moodleid` and `moodlekey` after initialization if you don't want leave your Moodle account and password in GAS project. (But you need to refill them if session expired unexpectedly)
