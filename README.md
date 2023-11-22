@@ -47,3 +47,10 @@ Under `Main.gs` function main, there are some settings about notification, you c
 |----------|----------|----------|
 |   `enableNewEventNotify`  |   `true`  |   Send notification if new assignment available.  |
 |   `enableEditEventNotify`  |   `true`  |   Send notification if assignment deadline updated.  |
+
+## Troubleshooting
+You can set interval of error notification sent to your email in trigger settings.
+### Login failed!
+- Check your Moodle account and password in properties is correct.
+- If your account and password is removed after initialization, refill them and run `touchSession` to update session.
+- If all of them is not working, maybe Moodle is under bad condition, try again later.
