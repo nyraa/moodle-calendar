@@ -7,29 +7,37 @@ A daemon to crawl NCKU Moodle calendar events(assignment) and sync them to Googl
 - Submission status mark as color
 - Send email notifications for new assignment
 - Send email notifications for assignment deadline updated
-- Hold Moodle session
+- Hold Moodle session, without storing account and password
 
 ## Security
 - This project is standalone, open source and totally under your own Google account, no data will be sent to any other server.
 - If you are still worried about your Moodle account and password, you can delete them after initialization. (But you need to refill them if session expired unexpectedly)
 
 ## Setup
-1. Login your Google account (school Google Workspace account recommanded) in browser.
+Make sure you read [Reminder Notice](#reminder-notice) carefully before setup.
+1. Login your Google account (must be school Google Workspace account) in browser.
 2. Visit [GAS project: Moodle Calendar Prototype](https://script.google.com/d/1xTOFyXwG29KlCkZwG-cZkHT3_bvQwJ7Z1epCd0n0BsQwIr7WIPnFIXLt/edit) and go to `Overview` to make a copy under your Google account.
 3. Open the copied project, go to `Project Settings` to add properties `moodleid` and `moodlekey` and fill in your Moodle account and password.
 4. Go to `Editor` and select `Inititalize.gs` then click `Run` to initialize the project. Script will create a calendar called `Moodle Calendar` under executor's account and sync existed event. (You may need to authorize the project to access your Google account)
-5. You can delete the `moodleid` and `moodlekey` after initialization if you don't want leave your Moodle account and password in GAS project. (But you need to refill them if session expired unexpectedly)
-6. Go to `Triggers` and add a trigger to `main`, set `event source` to `Time-driven`, `type` to `Hour timer`, `interval` to 6 hours and click `Save`. (Don't set too short interval to avoid make overload to Moodle server)
+5. (Optional) You can delete the `moodleid` and `moodlekey` after initialization if you don't want leave your Moodle account and password in GAS project. (But you need to refill them if session expired unexpectedly)
+6. Go to `Triggers` and add a trigger to `main`, set `event source` to `Time-driven`, `type` to `Hour timer`, `interval` to 6 hours and click `Save`. (Don't set too short interval to avoid making overload to Moodle server)
 7. Add another trigger to `touchSession` and interval to 2 hour. (This trigger is used to keep session alive)
+
+## Reminder Notice
+- Don't make too short interval in trigger settings, it may cause overload to Moodle server.
+- Please use school Google Workspace account or you can't view and clone Protoype Project.
+- The Google account you set the trigger and grant premission will be the executor of this project.
+- Calendar events will be created under executor's account.
+- Notification email will be sent to executor's email.
 
 ## Apperance
 ### Google Calendar
 | Event Color | Meaning     |
 |:------|:-------------|
-| Green | Submitted   |
-| Yellow| Not submitted|
-| Red   | Overdue     |
-| Gray  | Not open yet |
+| &#128994; Green | Submitted   |
+| &#128993; Yellow| Not submitted|
+| &#128308; Red   | Overdue     |
+| &#128280; Gray  | Not open yet |
 
 Evnet time is from 00:00 to submission deadline.
 
@@ -52,5 +60,5 @@ Under `Main.gs` function main, there are some settings about notification, you c
 You can set interval of error notification sent to your email in trigger settings.
 ### Login failed!
 - Check your Moodle account and password in properties is correct.
-- If your account and password is removed after initialization, refill them and run `touchSession` to update session.
+- If your account and password is removed after initialization, refill them and run `touchSession` to gain new session.
 - If all of them is not working, maybe Moodle is under bad condition, try again later.
