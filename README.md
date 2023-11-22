@@ -21,6 +21,15 @@ A daemon to crawl NCKU Moodle calendar events(assignment) and sync them to Googl
 6. Go to `Triggers` and add a trigger to `main`, set `event source` to `Time-driven`, `type` to `Hour timer`, `interval` to `4~6 hours` and click `Save`. (Don't set too short interval to avoid make overload to Moodle server)
 7. Add another trigger to `touchSession` and interval to 1 hour. (This trigger is used to keep session alive)
 
+## Apperance
+### Google Calendar
+| Color | Meaning     |
+|:------|:-------------|
+| Green | Submitted   |
+| Yellow| Not submitted|
+| Red   | Overdue     |
+| Gray  | Not open yet |
+
 ## Settings about notification
 Under `Main.gs` function main, there are some settings about notification, you can modify them to fit your needs.
 | Settings | Default  | Feature |
