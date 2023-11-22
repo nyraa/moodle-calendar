@@ -10,7 +10,7 @@ A daemon to crawl NCKU Moodle calendar events(assignment) and sync them to Googl
 - Hold Moodle session
 
 ## Security
-- This project is standalone and totally under your own Google account, no data will be sent to any other server.
+- This project is standalone, open source and totally under your own Google account, no data will be sent to any other server.
 - If you are still worried about your Moodle account and password, you can delete them after initialization. (But you need to refill them if session expired unexpectedly)
 
 ## Setup
