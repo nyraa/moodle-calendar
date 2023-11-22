@@ -24,7 +24,7 @@ A daemon to crawl NCKU Moodle calendar events(assignment) and sync them to Googl
 
 ## Apperance
 ### Google Calendar
-| Color | Meaning     |
+| Event Color | Meaning     |
 |:------|:-------------|
 | Green | Submitted   |
 | Yellow| Not submitted|
