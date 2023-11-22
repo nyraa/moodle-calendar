@@ -15,6 +15,6 @@ function initialize()
     PropertyService.setProperty("calendarId", calendarId);
   }
   Logger.log("Importing existed events...");
-  main(false);
+  main(false, false);
   Logger.log("Initialization completed");
 }
