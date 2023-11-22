@@ -7,6 +7,7 @@ A daemon to crawl NCKU Moodle calendar events(assignment) and sync them to Googl
 - Submissions status mark as color
 - Send email notifications for new assignment
 - Send email notifications for assignment deadline updated
+- Hold Moodle session
 
 ## Security
 - This project is standalone and totally under your own Google account, no data will be sent to any other server.
@@ -18,7 +19,7 @@ A daemon to crawl NCKU Moodle calendar events(assignment) and sync them to Googl
 3. Open the copied project, go to `Project Settings` to add properties `moodleid` and `moodlekey` and fill in your Moodle account and password.
 4. Go to `Editor` and select `Inititalize.gs` then click `Run` to initialize the project. Script will create a calendar called `Moodle Calendar` under executor's account and sync existed event. (You may need to authorize the project to access your Google account)
 5. You can delete the `moodleid` and `moodlekey` after initialization if you don't want leave your Moodle account and password in GAS project. (But you need to refill them if session expired unexpectedly)
-6. Go to `Triggers` and add a trigger to `main`, set `event source` to `Time-driven`, `type` to `Hour timer`, `interval` to `4~6 hours` and click `Save`. (Don't set too short interval to avoid make overload to Moodle server)
+6. Go to `Triggers` and add a trigger to `main`, set `event source` to `Time-driven`, `type` to `Hour timer`, `interval` to 4~6 hours and click `Save`. (Don't set too short interval to avoid make overload to Moodle server)
 7. Add another trigger to `touchSession` and interval to 1 hour. (This trigger is used to keep session alive)
 
 ## Apperance
@@ -29,6 +30,8 @@ A daemon to crawl NCKU Moodle calendar events(assignment) and sync them to Googl
 | Yellow| Not submitted|
 | Red   | Overdue     |
 | Gray  | Not open yet |
+
+Evnet time is from 00:00 to submission deadline.
 
 ## Settings about notification
 Under `Main.gs` function main, there are some settings about notification, you can modify them to fit your needs.
