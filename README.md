@@ -32,12 +32,12 @@ Make sure you read [Reminder Notice](#reminder-notice) carefully before setup.
 
 ## Apperance
 ### Google Calendar
-| Event Color | Meaning     |
-|:------|:-------------|
-| &#128994; Green | Submitted   |
-| &#128993; Yellow| Not submitted|
-| &#128308; Red   | Overdue     |
-| &#128280; Gray  | Not open yet |
+| Event Color     | Meaning       |
+|-----------------|---------------|
+| &#128994; Green | Submitted     |
+| &#128993; Yellow| Not submitted |
+| &#128308; Red   | Overdue       |
+| &#128280; Gray  | Not open yet  |
 
 Evnet time is from 00:00 to submission deadline.
 
