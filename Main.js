@@ -21,8 +21,8 @@ function main(enableNewEventNotify=true, enableEditEventNotify=true)
   let currentDate = new Date();
   let dates = [];
 
-  for(let i = 0; i < 1; ++i)
-  // for(let i = -6; i < 6; ++i)
+  // for(let i = 0; i < 1; ++i) // for debug
+  for(let i = -6; i < 6; ++i)
   {
     let enumDate = new Date();
     enumDate.setMonth(currentDate.getMonth() + i);
