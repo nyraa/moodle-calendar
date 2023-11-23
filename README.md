@@ -21,7 +21,7 @@ Make sure you read [Reminder Notice](#reminder-notice) carefully before setup.
 4. Go to `Editor` and select `Inititalize.gs` then click `Run` to initialize the project. Script will create a calendar called `Moodle Calendar` under executor's account and sync existed event. (You may need to authorize the project to access your Google account)
 5. (Optional) You can delete the `moodleid` and `moodlekey` after initialization if you don't want leave your Moodle account and password in GAS project. (But you need to refill them if session expired unexpectedly)
 6. Go to `Triggers` and add a trigger to `main`, set `event source` to `Time-driven`, `type` to `Hour timer`, `interval` to 6 hours and click `Save`. (Don't set too short interval to avoid making overload to Moodle server)
-7. Add another trigger to `touchSession` and interval to 2 hour. (This trigger is used to keep session alive)
+7. Add another trigger to `touchSession` and interval to 1 hour. (This trigger is used to keep session alive)
 
 ## Reminder Notice
 - Don't make too short interval in trigger settings, it may cause overload to Moodle server.
