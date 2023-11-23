@@ -13,7 +13,7 @@ A daemon made in Google App Script (GAS) to crawl NCKU Moodle calendar events(as
 
 ## Security
 - This GAS project is standalone, open source and totally under your own Google account, no data will be sent to any other server.
-- If you are still worried about your Moodle account and password, you can delete them after initialization. (But you need to refill them if session expired unexpectedly)
+- If you are still worried about your Moodle account and password, you can remove them from GAS project after initialization. (But you need to refill them if session expired unexpectedly)
 
 ## Setup
 Make sure you read [Reminder Notice](#reminder-notice) carefully before actually operate setup.
@@ -28,9 +28,9 @@ Make sure you read [Reminder Notice](#reminder-notice) carefully before actually
 ## Reminder Notice
 - Don't make too short interval in trigger settings, it may cause overload to Moodle server.
 - Please use school Google Workspace account or you can't view and clone Protoype Project.
-- The Google account you set the trigger and grant premission will be the executor of this project.
-- Calendar events will be created under executor's account.
-- Notification email will be sent to executor's email.
+- The Google account you set the trigger and grant premission will be the **executor** of this project.
+- Calendar events will be created under **executor's** account.
+- Notification email will be sent to **executor's** email.
 
 ## Apperance
 ### Google Calendar
@@ -52,14 +52,14 @@ This project need following premissions:
 | `Send email as you` | Send email notifications. |
 
 ## Settings about notification
-Under `Main.gs` function main, there are some settings about notification, you can modify them to fit your needs.
+Under `Main.gs` function main, there are some settings about notification, you can modify them to enable or disable notification.
 | Settings | Default  | Feature |
 |----------|----------|----------|
 |   `enableNewEventNotify`  |   `true`  |   Send notification if new assignment available.  |
 |   `enableEditEventNotify`  |   `true`  |   Send notification if assignment deadline updated.  |
 
 ## Troubleshooting
-You can set interval of error notification sent to your email in trigger settings.
+You can set interval of error notification sent to your email in trigger settings. GAS will send error notification to your email if any error occured.
 ### Login failed!
 - Check your Moodle account and password in properties is correct.
 - If your account and password is removed after initialization, refill them and run `touchSession` to gain new session.
