@@ -1,16 +1,16 @@
 # Moodle Calendar
 
-A daemon to crawl NCKU Moodle calendar events(assignment) and sync them to Google Calendar, also send email notifications for assignment updates.
+A daemon made in Google App Script (GAS) to crawl NCKU Moodle calendar events(assignment) and sync them to Google Calendar, also send email notifications for assignment updates.
 
 ## Features
 - Sync assignment events to Google Calendar automatically
-- Submission status mark as color
+- Present assignment submission status with color in Google Calendar
 - Send email notifications for new assignment
 - Send email notifications for assignment deadline updated
 - Hold Moodle session, without storing account and password
 
 ## Security
-- This project is standalone, open source and totally under your own Google account, no data will be sent to any other server.
+- This GAS project is standalone, open source and totally under your own Google account, no data will be sent to any other server.
 - If you are still worried about your Moodle account and password, you can delete them after initialization. (But you need to refill them if session expired unexpectedly)
 
 ## Setup
@@ -32,7 +32,7 @@ Make sure you read [Reminder Notice](#reminder-notice) carefully before actually
 
 ## Apperance
 ### Google Calendar
-| Event Color     | Meaning       |
+| Event Color     | Status        |
 |-----------------|---------------|
 | &#128994; Green | Submitted     |
 | &#128993; Yellow| Not submitted |
