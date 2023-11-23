@@ -2,6 +2,8 @@
 
 A daemon made in Google App Script (GAS) to crawl NCKU Moodle calendar events(assignment) and sync them to Google Calendar, also send email notifications for assignment updates.
 
+中文版的 README 請參考 [這裡](README.zh.md)
+
 ## Features
 - Sync assignment events to Google Calendar automatically
 - Present assignment submission status with color in Google Calendar
