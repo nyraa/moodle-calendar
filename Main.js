@@ -41,7 +41,7 @@ function main(enableNewEventNotify=true, enableEditEventNotify=true)
     throw new Error("Calendar cannot be found. Maybe try clearing the calenderId and re-initialize again.");
   }
   let firstDate = new Date(dates[0]);
-  firstDate.setDate(0);
+  firstDate.setDate(1);
   firstDate.setHours(0, 0, 0, 0);
   let lastDate = new Date(dates.at(-1));
   lastDate.setMonth(lastDate.getMonth() + 1, 0);
@@ -100,6 +100,9 @@ function main(enableNewEventNotify=true, enableEditEventNotify=true)
 
         // get google event
         const googleEvent = googleEventsDict[moodleEventId];
+
+        // remove from googleEventsDict, left events not exists in moodle
+        delete googleEventsDict[moodleEventId];
 
 
         // if information not match, update it
@@ -200,6 +203,15 @@ function main(enableNewEventNotify=true, enableEditEventNotify=true)
     });
   }
   lock.releaseLock();
+
+  // remove events not exists in moodle
+  for(let moodleEventId in googleEventsDict)
+  {
+    let googleEvent = googleEventsDict[moodleEventId];
+    Logger.log(`Remove event ${googleEvent.getTitle()}`);
+    googleEvent.deleteEvent();
+  }
+
   // notify user
   if(enableNewEventNotify)
     notifyNewEvent(newEvents);
