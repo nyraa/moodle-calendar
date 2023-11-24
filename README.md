@@ -27,6 +27,7 @@ Make sure you read [Reminder Notice](#reminder-notice) carefully before actually
 
 ## Reminder Notice
 - Don't make too short interval in trigger settings, it may cause overload to Moodle server.
+- Don't add event to `Moodle Calendar` manually, it will be removed by script.
 - Please use school Google Workspace account or you can't view and clone Protoype Project.
 - The Google account you set the trigger and grant premission will be the **executor** of this project.
 - Calendar events will be created under **executor's** account.

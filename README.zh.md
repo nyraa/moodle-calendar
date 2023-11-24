@@ -27,6 +27,7 @@ English version of README please refer to [here](README.md)
 
 ## 注意事項
 - 請勿在觸發條件設定中設定過短的間隔，避免造成 Moodle 伺服器負擔。
+- 請勿在 `Moodle Calendar` 日曆中新增活動，這個日曆其他內容會被程式清空。
 - 請使用學校的 Google Workspace 帳號，否則無法檢視和複製 Prototype 專案。
 - 授權及設定觸發條件的帳號會是這個專案的**執行者**。
 - 行事曆會建立在**執行者**的 Google 帳號下。
