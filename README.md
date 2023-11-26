@@ -65,3 +65,6 @@ You can set interval of error notification sent to your email in trigger setting
 - Check your Moodle account and password in properties is correct.
 - If your account and password is removed after initialization, refill them and run `touchSession` to gain new session.
 - If all of them is not working, maybe Moodle is under bad condition, try again later.
+
+### Exception: SSL Error
+- This is caused by Moodle server, their SSL certificate expired at 2023/11/25 23:59:59. Just wait for them to renew it.

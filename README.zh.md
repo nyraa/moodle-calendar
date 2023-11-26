@@ -66,3 +66,6 @@ English version of README please refer to [here](README.md)
 - 檢查在指令碼屬性中填入的 Moodle 帳號和密碼是否正確。
 - 如果在初始化完成之後移除了帳號和密碼，請重新填入並執行 `touchSession` 來取得新的工作階段。
 - 如果仍然無法登入，請檢查 Moodle 是可以正常連線，這可能是暫時的問題，請過一段時間再試一次。
+
+### Exception: SSL Error
+- 這是 Moodle 伺服器的問題，Moodle 的憑證在 2023/11/25 23:59:59 過期了，只能等他們更新憑證。
