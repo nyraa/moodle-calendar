@@ -68,3 +68,6 @@ You can set interval of error notification sent to your email in trigger setting
 
 ### Exception: SSL Error
 - This is caused by Moodle server, their SSL certificate expired at 2023/11/25 23:59:59. Just wait for them to renew it.
+
+## Change Log
+- 2023/12/6 (0494aeb): Use batch call in `core_calendar_get_calendar_monthly_view` to reduce request count.
