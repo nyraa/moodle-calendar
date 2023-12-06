@@ -102,6 +102,28 @@ class Moodle
     return JSON.parse(res.getContentText());
   }
 
+  // batch call version of api
+  getCalendarsMonthly(dates)
+  {
+    // dates: [{year, month}, ...]
+    const args = dates.map((arg, index) => {
+      return {
+        index: index,
+        methodname: "core_calendar_get_calendar_monthly_view",
+        args: arg
+      };
+    });
+    const res = UrlFetchApp.fetch(`https://moodle.ncku.edu.tw/lib/ajax/service.php?sesskey=${this.SessKey}&info=core_calendar_get_calendar_monthly_view`, {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+        "Cookie": `MoodleSession=${this.MoodleSession}`
+      },
+      payload: JSON.stringify(args)
+    });
+    return JSON.parse(res.getContentText());
+  }
+
   getAssignmentInfo(assignmentInstance)
   {
     const res = UrlFetchApp.fetch(`https://moodle.ncku.edu.tw/mod/assign/view.php?id=${assignmentInstance}`, {

@@ -57,151 +57,150 @@ function main(enableNewEventNotify=true, enableEditEventNotify=true)
 
   const newEvents = [];
   const updatedEvents = [];
-  for(let {month, year} of monthYears)
-  {
-    // get moodle calendar data
-    let moodleMonthCalendarData = moodle.getCalendarMonthly(year, month);
-    let moodleEvents = moodleMonthCalendarData[0].data.weeks.reduce((weekArray, week) => {
+  
+  const moodleCalendarData = moodle.getCalendarsMonthly(monthYears);
+  const moodleEvents = moodleCalendarData.reduce((eventArray, month) => {
+    return eventArray.concat(month.data.weeks.reduce((weekArray, week) => {
       return weekArray.concat(week.days.reduce((dayArray, day) => {
         return dayArray.concat(day.events.filter((event) => event.modulename === "assign"));
       }, []));
-    }, []);
+    }, []));
+  }, []);
+
+  
+  moodleEvents.forEach((moodleEvent) => {
+    let moodleEventId = moodleEvent.id;
+
+    // check moodle event exists by id in calendar event description
+    let moodleEventInstanceId = moodleEvent.instance;
+    let moodleAssignment = moodle.getAssignmentInfo(moodleEventInstanceId);
 
 
-    moodleEvents.forEach((moodleEvent) => {
-      let moodleEventId = moodleEvent.id;
-
-      // check moodle event exists by id in calendar event description
-      let moodleEventInstanceId = moodleEvent.instance;
-      let moodleAssignment = moodle.getAssignmentInfo(moodleEventInstanceId);
-
-
-      // prepare event properties
-      let endDate = new Date(moodleEvent.timestart * 1000);
-      let startDate = new Date(endDate);
-      startDate.setHours(0);
-      startDate.setMinutes(0);
-      startDate.setSeconds(0);
-      startDate.setMilliseconds(0);
-      const eventProperty = {
-        title: moodleEvent.name,
-        startDate: startDate,
-        endDate: endDate,
-        description: `<a href="${moodleEvent.course.viewurl}">${moodleEvent.course.fullname}</a><br /><a href="${moodleEvent.url}">${moodleAssignment.title}</a>${moodleAssignment.status === "notopened" ? `<br /><i>${moodleAssignment.message}</i>` : ""}<h3>${moodleAssignment.title}</h3>${moodleEvent.description}`,
-        location: moodleEvent.location
-      };
+    // prepare event properties
+    let endDate = new Date(moodleEvent.timestart * 1000);
+    let startDate = new Date(endDate);
+    startDate.setHours(0);
+    startDate.setMinutes(0);
+    startDate.setSeconds(0);
+    startDate.setMilliseconds(0);
+    const eventProperty = {
+      title: moodleEvent.name,
+      startDate: startDate,
+      endDate: endDate,
+      description: `<a href="${moodleEvent.course.viewurl}">${moodleEvent.course.fullname}</a><br /><a href="${moodleEvent.url}">${moodleAssignment.title}</a>${moodleAssignment.status === "notopened" ? `<br /><i>${moodleAssignment.message}</i>` : ""}<h3>${moodleAssignment.title}</h3>${moodleEvent.description}`,
+      location: moodleEvent.location
+    };
 
 
 
-      if(moodleEventId in googleEventsDict)
+    if(moodleEventId in googleEventsDict)
+    {
+      // event exists
+      Logger.log(`Event ${moodleEvent.popupname} existed`);
+
+      // get google event
+      const googleEvent = googleEventsDict[moodleEventId];
+
+      // remove from googleEventsDict, left events not exists in moodle
+      delete googleEventsDict[moodleEventId];
+
+
+      // if information not match, update it
+      const updatedEvent = {};
+
+
+      // check date
+      let googleEventStartDate = googleEvent.getStartTime();
+      let googleEventEndDate = googleEvent.getEndTime();
+      if(googleEventStartDate - startDate !== 0 || googleEventEndDate - endDate !== 0)
       {
-        // event exists
-        Logger.log(`Event ${moodleEvent.popupname} existed`);
-
-        // get google event
-        const googleEvent = googleEventsDict[moodleEventId];
-
-        // remove from googleEventsDict, left events not exists in moodle
-        delete googleEventsDict[moodleEventId];
-
-
-        // if information not match, update it
-        const updatedEvent = {};
-
-
-        // check date
-        let googleEventStartDate = googleEvent.getStartTime();
-        let googleEventEndDate = googleEvent.getEndTime();
-        if(googleEventStartDate - startDate !== 0 || googleEventEndDate - endDate !== 0)
-        {
-          Logger.log("Datetime updated");
-          googleEvent.setTime(startDate, endDate);
-          updatedEvent.deadline = {
-            from: googleEventEndDate,
-            to: endDate
-          };
-        }
-
-
-        // TODO check state(color)
-        googleEvent.setColor(moodleAssignment.color);
-
-
-        // check event title
-        let googleEventTitle = googleEvent.getTitle();
-        if(googleEventTitle !== eventProperty.title)
-        {
-          // title updated
-          Logger.log("Update event title");
-          googleEvent.setTitle(eventProperty.title);
-          // google calendar event title change is no need to send notification
-          updatedEvent.eventTitle = {
-            from: googleEventTitle,
-            to: eventProperty.title
-          }
-        }
-
-
-        // check assignment title
-        let assignmentTitle = googleEvent.getTag("title");
-        if(assignmentTitle !== moodleAssignment.title)
-        {
-          Logger.log("Assignment title updated");
-          googleEvent.setTag("title", moodleAssignment.title);
-          updatedEvent.title = {
-            from: assignmentTitle,
-            to: moodleAssignment.title
-          }
-        }
-
-
-        // TODO check description
-        let googleEventDescription = googleEvent.getDescription();
-        if(googleEventDescription !== eventProperty.description)
-        {
-          Logger.log("Update event description");
-          googleEvent.setDescription(eventProperty.description);
-          updatedEvent.description = {
-            from: null,
-            to: moodleEvent.description
-          }
-        }
-
-        // push update to updates
-        if(Object.keys(updatedEvent).length > 0)
-          updatedEvents.push({updatedEvent, moodleEvent, moodleAssignment});
+        Logger.log("Datetime updated");
+        googleEvent.setTime(startDate, endDate);
+        updatedEvent.deadline = {
+          from: googleEventEndDate,
+          to: endDate
+        };
       }
-      else
+
+
+      // TODO check state(color)
+      googleEvent.setColor(moodleAssignment.color);
+
+
+      // check event title
+      let googleEventTitle = googleEvent.getTitle();
+      if(googleEventTitle !== eventProperty.title)
       {
-        // event not exists
-        // TODO if not exists, create it
-        Logger.log(`Create new event from ${eventProperty.startDate} to ${eventProperty.endDate}: ${moodleEvent.popupname}`);
-
-        // add to notify list
-        newEvents.push({moodleEvent, moodleAssignment});
-
-        // create google calendar event
-        let googleEvent = calendar.createEvent(eventProperty.title, eventProperty.startDate, eventProperty.endDate, {
-          description: eventProperty.description,
-          location: eventProperty.location
-        });
-
-        // set color to event
-        googleEvent.setColor(moodleAssignment.color);
-
-        // update tags
-        const tagsToSet = {
-          moodleEventId: moodleEvent.id,
-          url: moodleEvent.url,
-          title: moodleAssignment.title,
-        }
-        for(let key in tagsToSet)
-        {
-          googleEvent.setTag(key, tagsToSet[key]);
+        // title updated
+        Logger.log("Update event title");
+        googleEvent.setTitle(eventProperty.title);
+        // google calendar event title change is no need to send notification
+        updatedEvent.eventTitle = {
+          from: googleEventTitle,
+          to: eventProperty.title
         }
       }
-    });
-  }
+
+
+      // check assignment title
+      let assignmentTitle = googleEvent.getTag("title");
+      if(assignmentTitle !== moodleAssignment.title)
+      {
+        Logger.log("Assignment title updated");
+        googleEvent.setTag("title", moodleAssignment.title);
+        updatedEvent.title = {
+          from: assignmentTitle,
+          to: moodleAssignment.title
+        }
+      }
+
+
+      // TODO check description
+      let googleEventDescription = googleEvent.getDescription();
+      if(googleEventDescription !== eventProperty.description)
+      {
+        Logger.log("Update event description");
+        googleEvent.setDescription(eventProperty.description);
+        updatedEvent.description = {
+          from: null,
+          to: moodleEvent.description
+        }
+      }
+
+      // push update to updates
+      if(Object.keys(updatedEvent).length > 0)
+        updatedEvents.push({updatedEvent, moodleEvent, moodleAssignment});
+    }
+    else
+    {
+      // event not exists
+      // TODO if not exists, create it
+      Logger.log(`Create new event from ${eventProperty.startDate} to ${eventProperty.endDate}: ${moodleEvent.popupname}`);
+
+      // add to notify list
+      newEvents.push({moodleEvent, moodleAssignment});
+
+      // create google calendar event
+      let googleEvent = calendar.createEvent(eventProperty.title, eventProperty.startDate, eventProperty.endDate, {
+        description: eventProperty.description,
+        location: eventProperty.location
+      });
+
+      // set color to event
+      googleEvent.setColor(moodleAssignment.color);
+
+      // update tags
+      const tagsToSet = {
+        moodleEventId: moodleEvent.id,
+        url: moodleEvent.url,
+        title: moodleAssignment.title,
+      }
+      for(let key in tagsToSet)
+      {
+        googleEvent.setTag(key, tagsToSet[key]);
+      }
+    }
+  });
   lock.releaseLock();
 
   // remove events not exists in moodle
