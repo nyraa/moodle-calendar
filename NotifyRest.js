@@ -1,4 +1,4 @@
-function notifyNewEvent(events)
+function notifyNewEventRest(events)
 {
   Logger.log("Send new event notification...");
   if(events.length <= 0)
@@ -9,8 +9,8 @@ function notifyNewEvent(events)
   const userEmail = Session.getActiveUser().getEmail();
   const mailSubject = `New Moodle Assignment`;
   MailApp.sendEmail(userEmail, mailSubject, "", {
-    htmlBody: `<h2>There are ${events.length} new assignment(s) in your moodle:</h2><hr />` + events.map(({moodleEvent: event, moodleAssignment: assignment}) => `
-    <h2>${assignment.title}</h2>
+    htmlBody: `<h2>There are ${events.length} new assignment(s) in your moodle:</h2><hr />` + events.map(({event, assignment}) => `
+    <h2>${assignment.name}</h2>
     <a href="${event.course.viewurl}">${event.course.fullname}</a><br />
     Deadline: ${new Intl.DateTimeFormat("zh-TW", {
       year: "numeric",
@@ -32,7 +32,7 @@ function notifyNewEvent(events)
   Logger.log("Sent!");
 }
 
-function notifyEditEvent(events)
+function notifyEditEventRest(events)
 {
   Logger.log("Send update event notification...");
   if(events.length <= 0)
@@ -43,10 +43,10 @@ function notifyEditEvent(events)
   let updateCount = 0;
   const enabledNotify = ["deadline"];
   let mailBody = "<h2>Your moodle assignment(s) updated:</h2>";
-  events.forEach(({updatedEvent, moodleEvent, moodleAssignment: assignment}) => {
-    // for each event
 
-
+  // for each event
+  events.forEach(({updatedEvent, eventBundle}) => {
+    const {event, assignment, submission} = eventBundle;
     let acceptedKeys = 0;
     let assignmentBody = "";
     Object.keys(updatedEvent).forEach((key) => {
@@ -84,7 +84,7 @@ function notifyEditEvent(events)
     });
     if(acceptedKeys > 0)
     {
-      mailBody += `<hr /><h2>${assignment.title}</h2><a href="${assignment.url}">Link to assignment</a>${assignmentBody}`;
+      mailBody += `<hr /><h2>${assignment.name}</h2><a href="${event.url}">Link to assignment</a>${assignmentBody}`;
     }
   });
   if(updateCount <= 0)
