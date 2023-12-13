@@ -1,6 +1,7 @@
 const API_ENTRY = "https://moodle.ncku.edu.tw/webservice/rest/server.php";
 
-class MoodleRest
+// REST version
+class Moodle
 {
   constructor({username, password, wstoken})
   {
@@ -199,7 +200,7 @@ function test()
 {
   const PropertyService = PropertiesService.getScriptProperties();
   const {moodleid: username, moodlekey: password} = PropertyService.getProperties();
-  const moodle = new MoodleRest({username, password});
+  const moodle = new Moodle({username, password});
   // Logger.log(moodle.getEventBundles([{year: 2023, month: 12}]));
   Logger.log(moodle.get_site_info().errorcode);
 }

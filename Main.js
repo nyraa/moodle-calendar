@@ -1,11 +1,11 @@
-function mainRest(enableNewEventNotify=true, enableEditEventNotify=true)
+function main(enableNewEventNotify=true, enableEditEventNotify=true)
 {
   // login
   const PropertyService = PropertiesService.getScriptProperties();
   const {moodleid: username, moodlekey: password, wstoken: wstoken} = PropertyService.getProperties();
 
   Logger.log("Login...");
-  const moodle = new MoodleRest({username, password, wstoken});
+  const moodle = new Moodle({username, password, wstoken});
 
   // store wstoken
   PropertyService.setProperty("wstoken", moodle.wstoken);
@@ -232,7 +232,7 @@ function mainRest(enableNewEventNotify=true, enableEditEventNotify=true)
 
   // notify user
   if(enableNewEventNotify)
-    notifyNewEventRest(newEvents);
+    notifyNewEvent(newEvents);
   if(enableEditEventNotify);
-    notifyEditEventRest(updatedEvents);
+    notifyEditEvent(updatedEvents);
 }
