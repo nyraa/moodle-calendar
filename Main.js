@@ -135,7 +135,7 @@ function main(enableNewEventNotify=true, enableEditEventNotify=true)
         };
       }
 
-      // set color
+      // check color
       const googleEventColor = googleEvent.getColor();
       if(googleEventColor !== color)
       {
