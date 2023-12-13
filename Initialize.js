@@ -8,7 +8,7 @@ function initialize()
     // create calendar
     Logger.log("Creating calendar...");
     const calendar = CalendarApp.createCalendar("Moodle Calendar", {
-      summery: "A Calendar imported from NCKU Moodle",
+      summary: "A Calendar imported from NCKU Moodle",
       color: "#e1822c"
     });
     calendarId = calendar.getId();
