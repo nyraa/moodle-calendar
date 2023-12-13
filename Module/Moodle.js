@@ -109,7 +109,7 @@ class Moodle
     const submissionsStatus = this.get_submissions_status(moodleEvents.map((event) => {
       return assignments[event.instance].id;
     })).responses.map((res) => res.data).reduce((prev, status) => {
-      prev[status.lastattempt.submission.assignment] = status;
+      prev[(status.lastattempt.submission || status.lastattempt.teamsubmission).assignment] = status;
       return prev;
     }, {});
 

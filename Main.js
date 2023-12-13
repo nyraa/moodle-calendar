@@ -90,7 +90,7 @@ function main(enableNewEventNotify=true, enableEditEventNotify=true)
     else
     {
       // if submitted, GREEN'
-      if(submission.lastattempt.submission.status == "submitted")
+      if((submission.lastattempt.submission || submission.lastattempt.teamsubmission).status == "submitted")
       {
         color = CalendarApp.EventColor.GREEN;
       }
