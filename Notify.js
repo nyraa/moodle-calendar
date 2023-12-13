@@ -1,4 +1,4 @@
-function notifyNewEventRest(events)
+function notifyNewEvent(events)
 {
   Logger.log("Send new event notification...");
   if(events.length <= 0)
@@ -32,7 +32,7 @@ function notifyNewEventRest(events)
   Logger.log("Sent!");
 }
 
-function notifyEditEventRest(events)
+function notifyEditEvent(events)
 {
   Logger.log("Send update event notification...");
   if(events.length <= 0)
