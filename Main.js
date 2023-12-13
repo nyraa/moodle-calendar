@@ -233,6 +233,6 @@ function main(enableNewEventNotify=true, enableEditEventNotify=true)
   // notify user
   if(enableNewEventNotify)
     notifyNewEvent(newEvents);
-  if(enableEditEventNotify);
+  if(enableEditEventNotify)
     notifyEditEvent(updatedEvents);
 }
