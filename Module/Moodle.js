@@ -195,12 +195,3 @@ class Moodle
     return JSON.parse(res.getContentText());
   }
 }
-
-function test()
-{
-  const PropertyService = PropertiesService.getScriptProperties();
-  const {moodleid: username, moodlekey: password} = PropertyService.getProperties();
-  const moodle = new Moodle({username, password});
-  // Logger.log(moodle.getEventBundles([{year: 2023, month: 12}]));
-  Logger.log(moodle.get_site_info().errorcode);
-}
