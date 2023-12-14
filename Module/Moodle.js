@@ -11,9 +11,15 @@ class Moodle
       const verify = this.get_site_info();
       if("errorcode" in verify)
       {
-        throw new Error(JSON.stringify(verify));
+        Logger.log("Login by wstoken failed: " + JSON.stringify(verify));
+        Logger.log("Falling back to password login.");
+        this.login(username, password);
+        Logger.log("Login by password successfully.");
       }
-      Logger.log("Login by wstoken successfully.");
+      else
+      {
+        Logger.log("Login by wstoken successfully.");
+      }
     }
     else
     {
