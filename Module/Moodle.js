@@ -11,7 +11,7 @@ class Moodle
       const verify = this.get_site_info();
       if("errorcode" in verify)
       {
-        Logger.log("Login by wstoken failed: " + JSON.stringify(verify));
+        Logger.log("Login by wstoken failed." + JSON.stringify(verify));
         Logger.log("Falling back to password login.");
         this.login(username, password);
         Logger.log("Login by password successfully.");
@@ -114,7 +114,9 @@ class Moodle
     Logger.log("Fetching submission status...");
     const submissionsStatus = this.get_submissions_status(moodleEvents.map((event) => {
       return assignments[event.instance].id;
-    })).responses.map((res) => res.data).reduce((prev, status) => {
+    })).responses.map((res) => {
+      return res.data;
+    }).reduce((prev, status) => {
       prev[(status.lastattempt.submission || status.lastattempt.teamsubmission).assignment] = status;
       return prev;
     }, {});
