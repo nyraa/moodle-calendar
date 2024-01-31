@@ -19,6 +19,7 @@ function main(enableNewEventNotify=true, enableEditEventNotify=true)
   for(let i = -6; i < 6; ++i)
   {
     let enumDate = new Date();
+    enumDate.setDate(1);
     enumDate.setMonth(currentDate.getMonth() + i);
     dates.push(enumDate);
   }
