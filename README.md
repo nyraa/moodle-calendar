@@ -69,3 +69,4 @@ You can set interval of error notification sent to your email in trigger setting
 - 2023/12/6 (0494aeb): Use batch call in `core_calendar_get_calendar_monthly_view` to reduce request count.
 - 2023/12/12 (7c17937): Use REST API to reduce request count.
 - 2023/12/13 (eea0db4): Fix submission type `teamsubmission` not handled.
+- 2024/1/31 (f41649a): Fix google calendar event duplicate due to date range generating bug.
