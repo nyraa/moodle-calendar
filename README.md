@@ -61,9 +61,6 @@ Under `Main.gs` function main, there are some settings about notification, you c
 ## Troubleshooting
 You can set interval of error notification sent to your email in trigger settings. GAS will send error notification to your email if any error occured.
 
-## Summary of failures for Google Apps Script: Moodle Calendar
-This error may be sent to your email if any error occured.
-
 ### Exception: Address unavailable...
 ### Exception: Request failed returned code 503...
 - Excpetion occured when fetching data from Moodle, may be caused by Moodle exception or connection issue. Ignore if not occured continuously.

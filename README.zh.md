@@ -61,9 +61,6 @@ English version of README please refer to [here](README.md)
 ## 故障排除
 在觸發條件設定中可以設定錯誤通知的間隔時間，GAS 的執行階段錯誤會定期寄電子郵件通知執行者。
 
-## Summary of failures for Google Apps Script: Moodle Calendar
-有可能會在 Email 中收到這個錯誤紀錄。
-
 ### Exception: Address unavailable...
 ### Exception: Request failed returned code 503...
 - 這個錯誤是當從 Moodle 取得資料的時候發生例外，可能是 Moodle 的例外，或是網路問題，如果沒有一直連續發生可以無視。
