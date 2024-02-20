@@ -64,8 +64,8 @@ English version of README please refer to [here](README.md)
 ## Summary of failures for Google Apps Script: Moodle Calendar
 有可能會在 Email 中收到這個錯誤紀錄。
 
-### Exception: Address unavailable https://moodle.ncku.edu.tw/webservice/rest/server.php......
-### Exception: Request failed for https://moodle.ncku.edu.tw returned code 503. Truncated server response
+### Exception: Address unavailable...
+### Exception: Request failed returned code 503...
 - 這個錯誤是當從 Moodle 取得資料的時候發生例外，可能是 Moodle 的例外，或是網路問題，如果沒有一直連續發生可以無視。
 
 ### Login failed
