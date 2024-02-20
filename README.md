@@ -60,6 +60,14 @@ Under `Main.gs` function main, there are some settings about notification, you c
 
 ## Troubleshooting
 You can set interval of error notification sent to your email in trigger settings. GAS will send error notification to your email if any error occured.
+
+## Summary of failures for Google Apps Script: Moodle Calendar
+This error may be sent to your email if any error occured.
+
+### Exception: Address unavailable https://moodle.ncku.edu.tw/webservice/rest/server.php......
+### Exception: Request failed for https://moodle.ncku.edu.tw returned code 503. Truncated server response
+- Excpetion occured when fetching data from Moodle, may be caused by Moodle exception or connection issue. Ignore if not occured continuously.
+
 ### Login failed
 - Check your Moodle account and password in properties is correct.
 - If your account and password is removed after initialization, refill them and run `main` to gain new token.

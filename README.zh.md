@@ -61,6 +61,13 @@ English version of README please refer to [here](README.md)
 ## 故障排除
 在觸發條件設定中可以設定錯誤通知的間隔時間，GAS 的執行階段錯誤會定期寄電子郵件通知執行者。
 
+## Summary of failures for Google Apps Script: Moodle Calendar
+有可能會在 Email 中收到這個錯誤紀錄。
+
+### Exception: Address unavailable https://moodle.ncku.edu.tw/webservice/rest/server.php......
+### Exception: Request failed for https://moodle.ncku.edu.tw returned code 503. Truncated server response
+- 這個錯誤是當從 Moodle 取得資料的時候發生例外，可能是 Moodle 的例外，或是網路問題，如果沒有一直連續發生可以無視。
+
 ### Login failed
 - 檢查在指令碼屬性中填入的 Moodle 帳號和密碼是否正確。
 - 如果在初始化完成之後移除了帳號和密碼，請重新填入並執行 `main` 來取得新的 token。
