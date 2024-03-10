@@ -13,7 +13,7 @@ English version of README please refer to [here](README.md)
 
 ## 安全性
 - 這個專案是一個獨立、開放原始碼的 Google Apps Script 專案，所有資料都只會儲存在你的 Google 帳號中，不會傳送到任何其他伺服器。
-- 如果對於帳號密碼的安全性仍有疑慮，你可以在程式初始化完成之後從專案移除帳號密碼，除非 Moodle token 意外被回收，才需要重新輸入。
+- 如果對於帳號密碼的安全性仍有疑慮，你可以在程式初始化完成之後從專案移除帳號密碼，但如果 Moodle token 被回收就需要重新輸入帳號密碼，token 有效期限約為3個月。
 
 ## 部署設定
 請務必在實際操作部署設定之前先閱讀[注意事項](#注意事項)。
@@ -21,7 +21,7 @@ English version of README please refer to [here](README.md)
 2. 前往 [GAS 專案：Moodle Calendar Prototype](https://script.google.com/d/1xTOFyXwG29KlCkZwG-cZkHT3_bvQwJ7Z1epCd0n0BsQwIr7WIPnFIXLt/edit) 並在你的 Google 帳號下建立一份複本。
 3. 開啟剛才複製的專案，從 「專案設定」 中新增指令碼屬性 `moodleid` 和 `moodlekey` 並填入你的 Moodle 帳號和密碼。
 4. 在 「編輯器」 籤頁中選擇 `Inititalize.gs` 然後按 「執行」 來初始化專案。程式會在你的 Google 帳號下建立一個叫做 `Moodle Calendar` 的行事曆並同步已存在的作業。（首次執行會需要授權專案）
-5. （選用）如果你不想在 GAS 專案中留下你的 Moodle 帳號和密碼，你可以在初始化完成之後刪除 `moodleid` 和 `moodlekey` 屬性。（但如果 Moodle token 意外被回收就需要重新手動輸入）
+5. （選擇性）如果你不想在 GAS 專案中留下你的 Moodle 帳號和密碼，你可以在初始化完成之後刪除 `moodleid` 和 `moodlekey` 屬性。（但需要在 token 被回收的時候重新輸入）
 6. 到 「觸發條件」 籤頁中新增一個觸發條件，選擇執行 `main` 函式，設定活動來源為 `時間驅動`、觸發條件類型為 `小時計時器`、間隔為 6 小時，然後儲存。（間隔代表同步的頻繁程度，請勿設定太短的間隔，避免造成 Moodle 伺服器負擔）
 
 ## 注意事項
@@ -65,9 +65,11 @@ English version of README please refer to [here](README.md)
 ### Exception: Request failed returned code 503...
 - 這個錯誤是當從 Moodle 取得資料的時候發生例外，可能是 Moodle 的例外，或是網路問題，如果沒有一直連續發生可以無視。
 
+### 無效的通行證 -- 找不到通行憑證
+- 如果在初始化完成之後移除了帳號和密碼，請重新填入並執行 `main` 來取得新的 token。
+
 ### Login failed
 - 檢查在指令碼屬性中填入的 Moodle 帳號和密碼是否正確。
-- 如果在初始化完成之後移除了帳號和密碼，請重新填入並執行 `main` 來取得新的 token。
 - 如果仍然無法登入，請檢查 Moodle 是否可以正常連線，這可能是暫時的問題，請過一段時間再試一次。
 
 ## Change log

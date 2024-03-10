@@ -13,7 +13,7 @@ A daemon made in Google App Script (GAS) to crawl NCKU Moodle calendar events(as
 
 ## Security
 - This GAS project is standalone, open source and totally under your own Google account, no data will be sent to any other server.
-- If you are still worried about your Moodle account and password, you can remove them from GAS project after initialization. (But you need to refill them if token revoked unexpectedly)
+- If you are still worried about your Moodle account and password, you can remove them from GAS project after initialization. (But you need to refill them if token revoked, moodle's token revoked about every 3 months.)
 
 ## Setup
 Make sure you read [Reminder Notice](#reminder-notice) carefully before actually operate setup.
@@ -21,7 +21,7 @@ Make sure you read [Reminder Notice](#reminder-notice) carefully before actually
 2. Visit [GAS project: Moodle Calendar Prototype](https://script.google.com/d/1xTOFyXwG29KlCkZwG-cZkHT3_bvQwJ7Z1epCd0n0BsQwIr7WIPnFIXLt/edit) and go to `Overview` to make a copy under your Google account.
 3. Open the copied project, go to `Project Settings` to add properties `moodleid` and `moodlekey` and fill in your Moodle account and password.
 4. Go to `Editor` and select `Inititalize.gs` then click `Run` to initialize the project. Script will create a calendar called `Moodle Calendar` under executor's account and sync existed event. (You may need to authorize the project to access your Google account)
-5. (Optional) You can delete the `moodleid` and `moodlekey` after initialization if you don't want leave your Moodle account and password in GAS project. (But you need to refill them if token revoked unexpectedly)
+5. (Optional) You can delete the `moodleid` and `moodlekey` after initialization if you don't want leave your Moodle account and password in GAS project. (But you need to refill them if token revoked)
 6. Go to `Triggers` and add a trigger to `main`, set `event source` to `Time-driven`, `type` to `Hour timer`, `interval` to 6 hours and click `Save`. (The interval presents the sync frequency. Don't set too short interval to avoid making overload to Moodle server)
 
 ## Reminder Notice
@@ -65,9 +65,11 @@ You can set interval of error notification sent to your email in trigger setting
 ### Exception: Request failed returned code 503...
 - Excpetion occured when fetching data from Moodle, may be caused by Moodle exception or connection issue. Ignore if not occured continuously.
 
+### 無效的通行證 -- 找不到通行憑證
+- If your account and password is removed after initialization, refill them and run `main` to gain new token.
+
 ### Login failed
 - Check your Moodle account and password in properties is correct.
-- If your account and password is removed after initialization, refill them and run `main` to gain new token.
 - If all of them is not working, maybe Moodle is under bad condition, try again later.
 
 ## Change Log
