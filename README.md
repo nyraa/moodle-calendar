@@ -9,7 +9,7 @@ A daemon made in Google App Script (GAS) to crawl NCKU Moodle calendar events(as
 - Present assignment submission status with color in Google Calendar
 - Send email notifications for new assignment
 - Send email notifications for assignment deadline updated
-- Store token, insteadof storing account and password
+- Store token, storing account and password is optional (A token valid for about 3 months. If password stored, token will be updated automatically)
 
 ## Security
 - This GAS project is standalone, open source and totally under your own Google account, no data will be sent to any other server.
