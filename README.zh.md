@@ -18,7 +18,7 @@ English version of README please refer to [here](README.md)
 ## 部署設定
 請務必在實際操作部署設定之前先閱讀[注意事項](#注意事項)。
 1. 在瀏覽器中登入你的 Google 帳號。
-2. 前往 [GAS 專案：NCKU Moodle Calendar Prototype](https://script.google.com/u/2/home/projects/1u1hWVz9TYh-ktlUT6_OQWr3gTMI2Kk2fBL99skcLRdDCqOVD-r_iQ5yW) 並在你的 Google 帳號下建立一份複本。
+2. 前往 [GAS 專案：NCKU Moodle Calendar Prototype](https://script.google.com/d/1u1hWVz9TYh-ktlUT6_OQWr3gTMI2Kk2fBL99skcLRdDCqOVD-r_iQ5yW/edit) 並在你的 Google 帳號下建立一份複本。
 3. 開啟剛才複製的專案，從 「專案設定」 中新增指令碼屬性 `moodleid` 和 `moodlekey` 並填入你的 Moodle 帳號和密碼。
 4. 在 「編輯器」 籤頁中選擇 `Inititalize.gs` 然後按 「執行」 來初始化專案。程式會在你的 Google 帳號下建立一個叫做 `Moodle Calendar` 的行事曆並同步已存在的作業。（首次執行會需要授權專案）
 5. （選擇性）如果你不想在 GAS 專案中留下你的 Moodle 帳號和密碼，你可以在初始化完成之後刪除 `moodleid` 和 `moodlekey` 屬性。（但需要在 token 被回收的時候重新輸入）

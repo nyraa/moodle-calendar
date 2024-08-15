@@ -18,7 +18,7 @@ A daemon made in Google App Script (GAS) to crawl NCKU Moodle calendar events(as
 ## Setup
 Make sure you read [Reminder Notice](#reminder-notice) carefully before actually operate setup.
 1. Login your Google account in browser.
-2. Visit [GAS project: NCKU Moodle Calendar Prototype](https://script.google.com/u/2/home/projects/1u1hWVz9TYh-ktlUT6_OQWr3gTMI2Kk2fBL99skcLRdDCqOVD-r_iQ5yW) and go to `Overview` to make a copy under your Google account.
+2. Visit [GAS project: NCKU Moodle Calendar Prototype](https://script.google.com/d/1u1hWVz9TYh-ktlUT6_OQWr3gTMI2Kk2fBL99skcLRdDCqOVD-r_iQ5yW/edit) and go to `Overview` to make a copy under your Google account.
 3. Open the copied project, go to `Project Settings` to add properties `moodleid` and `moodlekey` and fill in your Moodle account and password.
 4. Go to `Editor` and select `Inititalize.gs` then click `Run` to initialize the project. Script will create a calendar called `Moodle Calendar` under executor's account and sync existed event. (You may need to authorize the project to access your Google account)
 5. (Optional) You can delete the `moodleid` and `moodlekey` after initialization if you don't want leave your Moodle account and password in GAS project. (But you need to refill them if token revoked)
