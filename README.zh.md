@@ -9,7 +9,7 @@ English version of README please refer to [here](README.md)
 - 在 Google 行事曆用顏色標示作業繳交狀態
 - 當有新作業的時候用電子郵件通知
 - 當作業截止日期更新的時候用電子郵件通知
-- 會儲存帳號 Token，不需儲存帳號密碼（一個 Token 大約有效期限為3個月）
+- 會儲存帳號 Token，選擇性地儲存帳號密碼（一個 Token 大約有效期限為3個月，若有儲存密碼即可自動更新 Token）
 
 ## 安全性
 - 這個專案是一個獨立、開放原始碼的 Google Apps Script 專案，所有資料都只會儲存在你的 Google 帳號中，不會傳送到任何其他伺服器。
