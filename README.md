@@ -13,7 +13,7 @@ A daemon made in Google App Script (GAS) to crawl NCKU Moodle calendar events(as
 
 ## Security
 - This GAS project is standalone, open source and totally under your own Google account, no data will be sent to any other server.
-- If you are still worried about your Moodle account and password, you can remove them from GAS project after initialization. (But you need to refill them if token revoked, moodle's token revoked about every 3 months.)
+- If you are still worried about your Moodle account and password, you can remove them from GAS project after initialization. (But you need to refill them if token revoked, moodle's is valid for about 3 months.)
 
 ## Setup
 Make sure you read [Reminder Notice](#reminder-notice) carefully before actually operate setup.
