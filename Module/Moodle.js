@@ -71,7 +71,7 @@ class Moodle
     });
 
     const result = JSON.parse(res.getContentText());
-    result.responses = result.responses.map((response) => {
+    result.responses = (result.responses ?? []).map((response) => {
       response.data = JSON.parse(response.data);
       return response;
     });
