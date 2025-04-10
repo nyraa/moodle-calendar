@@ -9,22 +9,23 @@ class Moodle
     {
       this.wstoken = wstoken;
       const verify = this.get_site_info();
-      if("errorcode" in verify)
-      {
-        Logger.log("Login by wstoken failed." + JSON.stringify(verify));
-        Logger.log("Falling back to password login.");
-        this.login(username, password);
-        Logger.log("Login by password successfully.");
-      }
-      else
+      if(!("errorcode" in verify))
       {
         Logger.log("Login by wstoken successfully.");
+        return;
       }
+      console.warn("Login by wstoken failed. " + JSON.stringify(verify));
+      console.warn("Falling back to password login.");
     }
-    else
+    if(username && password)
     {
       this.login(username, password);
       Logger.log("Login by password successfully.");
+      return;
+    }
+    else
+    {
+      throw new Error("No username or password provided.\nPlease check your script properties.");
     }
   }
 
